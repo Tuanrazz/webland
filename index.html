@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>web landing page razz</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Dark Mode Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Bubblegum Sans', cursive;
+      transition: background 0.5s;
+    }
+
+    .card:hover {
+      transform: scale(1.05) rotate(1deg);
+    }
+
+    #particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-indigo-100 dark:from-gray-900 dark:to-gray-800 text-black dark:text-white transition-all duration-500">
+
+  <!-- Background Animation -->
+  <div id="particles"></div>
+
+  <!-- Mode Toggle -->
+  <div class="w-full text-right mb-4">
+    <button onclick="toggleDark()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all">
+      🌗Mode
+    </button>
+  </div>
+
+  <h1 class="text-4xl font-bold mb-8 text-center text-indigo-600 dark:text-indigo-300">web landing</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
+    <!-- Kartu 1 -->
+    <div class="card cursor-pointer bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 transition duration-500" data-aos="fade-up"
+      onclick="tampilkanInfo('Coding', 'Belajar membuat web responsif dan interaktif dengan teknologi modern.')">
+      <i class="fas fa-laptop-code text-4xl text-indigo-500 mb-4"></i>
+      <h2 class="text-xl font-bold mb-2">Coding</h2>
+      <p class="text-gray-600 dark:text-gray-300">Membangun situs yang keren dan responsif.</p>
+    </div>
+
+    <!-- Kartu 2 -->
+    <div class="card cursor-pointer bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 transition duration-500" data-aos="fade-up"
+      data-aos-delay="100"
+      onclick="tampilkanInfo('AI & Otomatisasi', 'Gunakan AI untuk membuat aplikasi lebih cerdas dan efisien.')">
+      <i class="fas fa-brain text-4xl text-pink-500 mb-4"></i>
+      <h2 class="text-xl font-bold mb-2">AI & Otomatisasi</h2>
+      <p class="text-gray-600 dark:text-gray-300">Teknologi pintar untuk masa depan.</p>
+    </div>
+
+    <!-- Kartu 3 -->
+    <div class="card cursor-pointer bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 transition duration-500" data-aos="fade-up"
+      data-aos-delay="200"
+      onclick="tampilkanInfo('Mobile Friendly', 'Desain adaptif yang nyaman di semua ukuran layar perangkat.')">
+      <i class="fas fa-mobile-alt text-4xl text-green-500 mb-4"></i>
+      <h2 class="text-xl font-bold mb-2">Mobile Friendly</h2>
+      <p class="text-gray-600 dark:text-gray-300">Desain adaptif di semua layar.</p>
+    </div>
+
+    <!-- Kartu 4 -->
+    <div class="card cursor-pointer bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 transition duration-500" data-aos="fade-up"
+      data-aos-delay="300"
+      onclick="tampilkanInfo('Keamanan', 'Pelajari pentingnya menjaga keamanan data digital.')">
+      <i class="fas fa-shield-alt text-4xl text-red-500 mb-4"></i>
+      <h2 class="text-xl font-bold mb-2">Keamanan</h2>
+      <p class="text-gray-600 dark:text-gray-300">Lindungi data dan privasimu secara maksimal.</p>
+    </div>
+
+    <!-- Kartu 5 -->
+    <div class="card cursor-pointer bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 transition duration-500" data-aos="fade-up"
+      data-aos-delay="400"
+      onclick="tampilkanInfo('Desain UI/UX', 'Ciptakan antarmuka pengguna yang menarik dan mudah digunakan.')">
+      <i class="fas fa-paint-brush text-4xl text-yellow-500 mb-4"></i>
+      <h2 class="text-xl font-bold mb-2">Desain UI/UX</h2>
+      <p class="text-gray-600 dark:text-gray-300">Buat tampilan yang memikat dan intuitif.</p>
+    </div>
+  </div>
+
+  <!-- AOS Init -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- SweetAlert2 + Sound + Confetti -->
+  <script>
+    const audio = new Audio("https://www.myinstants.com/media/sounds/success-fanfare-trumpets.mp3");
+
+    function tampilkanInfo(judul, isi) {
+      audio.play();
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      Swal.fire({
+        title: judul,
+        text: isi,
+        icon: 'info',
+        confirmButtonText: 'Tutup',
+        background: '#f0f4ff',
+        confirmButtonColor: '#6366f1',
+        customClass: {
+          popup: 'font-[Bubblegum_Sans]'
+        }
+      });
+    }
+
+    // Mode Gelap
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+
+  <!-- Particle Background -->
+  <script>
+    tsParticles.load("particles", {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 50 },
+        size: { value: 2 },
+        move: { enable: true, speed: 0.5 },
+        opacity: { value: 0.5 },
+        color: { value: "#6366f1" },
+        links: {
+          enable: true,
+          distance: 100,
+          color: "#a5b4fc",
+          opacity: 0.3
+        }
+      },
+      background: { color: "transparent" }
+    });
+  </script>
+</body>
+</html>
